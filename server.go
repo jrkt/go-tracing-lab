@@ -1,24 +1,20 @@
 package main
 
 import (
-	pb "grpc_tracer/proto"
 	"log"
 	"net"
 	"os"
 	"strings"
 
 	"cloud.google.com/go/trace"
+	pb "github.com/jonathankentstevens/grpc-tracer/proto"
 	"golang.org/x/net/context"
 	"google.golang.org/api/option"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
 )
 
-var (
-	headerKey = "stackdriver-trace-context"
-)
-
-// server is used to implement helloworld.GreeterServer.
+// server is used to implement helloworld.GreeterServer
 type server struct{}
 
 // SayHello implements helloworld.GreeterServer
@@ -71,7 +67,7 @@ func serverInterceptor(traceClient *trace.Client) grpc.UnaryServerInterceptor {
 		if !ok {
 			md = metadata.New(nil)
 		}
-		header := strings.Join(md[headerKey], "")
+		header := strings.Join(md["stackdriver-trace-context"], "")
 
 		// create new child span from google trace header, add to
 		// current request context

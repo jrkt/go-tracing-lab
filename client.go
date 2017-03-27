@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	pb "grpc_tracer/proto"
 	"log"
 	"os"
 
 	"cloud.google.com/go/trace"
+	pb "github.com/jonathankentstevens/grpc-tracer/proto"
 	"golang.org/x/net/context"
 	"google.golang.org/api/option"
 	"google.golang.org/grpc"
