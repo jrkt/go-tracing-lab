@@ -17,11 +17,17 @@ type server struct{}
 
 // SayHello implements helloworld.GreeterServer
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+	span := trace.FromContext(ctx)
+	defer span.Finish()
+
 	return &pb.HelloReply{Message: "Hello " + in.Name}, nil
 }
 
 // SayHello implements helloworld.GreeterServer
 func (s *server) SayHelloAgain(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+	span := trace.FromContext(ctx)
+	defer span.Finish()
+
 	return &pb.HelloReply{Message: "Hello " + in.Name}, nil
 }
 

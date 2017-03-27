@@ -36,7 +36,10 @@ func main() {
 		log.Fatalf("could not greet: %v", err)
 	}
 
-	span.Finish()
+	err = span.FinishWait()
+	if err != nil {
+		log.Fatalln(err)
+	}
 
 	println("Response:", r.Message)
 }
