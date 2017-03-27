@@ -1,6 +1,7 @@
 package main
 
 import (
+	pb "grpc_tracer/proto"
 	"log"
 	"net"
 	"os"
@@ -9,7 +10,6 @@ import (
 	"golang.org/x/net/context"
 	"google.golang.org/api/option"
 	"google.golang.org/grpc"
-	pb "google.golang.org/grpc/examples/helloworld/helloworld"
 )
 
 // server is used to implement helloworld.GreeterServer.
@@ -17,9 +17,11 @@ type server struct{}
 
 // SayHello implements helloworld.GreeterServer
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	span := trace.FromContext(ctx)
-	defer span.Finish()
+	return &pb.HelloReply{Message: "Hello " + in.Name}, nil
+}
 
+// SayHello implements helloworld.GreeterServer
+func (s *server) SayHelloAgain(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
 	return &pb.HelloReply{Message: "Hello " + in.Name}, nil
 }
 

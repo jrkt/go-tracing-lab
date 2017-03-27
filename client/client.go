@@ -1,7 +1,7 @@
 package main
 
 import (
-	pb "grpc/helloworld/helloworld"
+	pb "grpc_tracer/proto"
 	"log"
 	"os"
 
