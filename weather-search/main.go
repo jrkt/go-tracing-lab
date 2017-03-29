@@ -8,7 +8,7 @@ import (
 	"strconv"
 
 	"cloud.google.com/go/trace"
-	"github.com/jonathankentstevens/grpc-tracer/weather-search/weather/client"
+	"github.com/jonathankentstevens/grpc-tracing-lab/weather-search/weather/client"
 	"golang.org/x/net/context"
 	"google.golang.org/api/option"
 )

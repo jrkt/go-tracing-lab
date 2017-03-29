@@ -20,7 +20,7 @@ var (
 func main() {
 
 	// establish connection with service w/ custom client interceptor
-	conn, err := grpc.Dial(address, grpc.WithInsecure(), EnableGRPCTracingDialOption)
+	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithUnaryInterceptor(grpc.UnaryClientInterceptor(clientInterceptor)))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
@@ -58,9 +58,7 @@ func main() {
 	println("Response:", r.Message)
 }
 
-// EnableGRPCTracingDialOption enables tracing of requests that are sent over a gRPC connection.
-var EnableGRPCTracingDialOption = grpc.WithUnaryInterceptor(grpc.UnaryClientInterceptor(clientInterceptor))
-
+// clientInterceptor enables tracing of requests that are sent over a gRPC connection.
 func clientInterceptor(ctx context.Context, method string, req, reply interface{}, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
 
 	// trace current request w/ child span

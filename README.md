@@ -20,20 +20,20 @@ Do some stuff here...
 - click "Enable"
 
 # Get repo
-```bash
+```
 git clone http://github.com/jonathankentstevens/grpc-tracing-lab $GOPATH/src/github.com/jonathankentstevens/grpc-tracing-lab
 ```
     
 # Setting up gRPC
 
 - Get code
-```bash
+```
 go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
 go get -u google.golang.org/grpc
 ```
 
 - Install protoc
-```bash
+```
 wget https://github.com/google/protobuf/releases/download/v3.2.0rc2/protoc-3.2.0rc2-linux-x86_64.zip
 unzip protoc-3.2.0rc2-linux-x86_64.zip
 sudo cp bin/protoc /usr/local/bin

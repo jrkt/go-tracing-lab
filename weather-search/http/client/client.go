@@ -5,8 +5,8 @@ import (
 	"errors"
 	"time"
 
-	pb "github.com/jonathankentstevens/grpc-tracer/weather-search/http/proto"
-	"github.com/jonathankentstevens/grpc-tracer/weather-search/interceptors"
+	pb "github.com/jonathankentstevens/grpc-tracing-lab/weather-search/http/proto"
+	"github.com/jonathankentstevens/grpc-tracing-lab/weather-search/interceptors"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )

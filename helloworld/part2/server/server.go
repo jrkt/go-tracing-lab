@@ -46,7 +46,7 @@ func main() {
 		log.Fatalf("failed to establish trace client: %v", err)
 	}
 
-	// establish new gRPC server w/ custom server interceptor
+	// establish new gRPC server w/ tracing interceptor
 	s := grpc.NewServer(EnableGRPCTracingServerOption(tc))
 
 	// register new server

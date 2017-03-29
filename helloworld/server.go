@@ -3,10 +3,8 @@ package main
 import (
 	"log"
 	"net"
-	"os"
 
-	"cloud.google.com/go/trace"
-	pb "github.com/jonathankentstevens/grpc-tracer/helloworld/proto"
+	pb "github.com/jonathankentstevens/grpc-tracing-lab/helloworld/proto"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )
@@ -36,15 +34,8 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	// establish trace client
-	ctx := context.Background()
-	tc, err := trace.NewClient(ctx, os.Getenv("GCP_PROJECT"))
-	if err != nil {
-		log.Fatalf("failed to establish trace client: %v", err)
-	}
-
 	// establish new gRPC server w/ custom server interceptor
-	s := grpc.NewServer(grpc.UnaryInterceptor(trace.GRPCServerInterceptor(tc)))
+	s := grpc.NewServer()
 
 	// register new server
 	pb.RegisterGreeterServer(s, &server{})
