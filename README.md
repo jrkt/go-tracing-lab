@@ -19,15 +19,21 @@ Do some stuff here...
 - select "Stackdriver Trace API"
 - click "Enable"
 
-# Get code
-
-    go get github.com/jonathankentstevens/grpc-tracer
+# Get repo
+```bash
+git clone http://github.com/jonathankentstevens/grpc-tracing-lab $GOPATH/src/github.com/jonathankentstevens/grpc-tracing-lab
+```
     
 # Setting up gRPC
 
-```
+- Get code
+```bash
 go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
 go get -u google.golang.org/grpc
+```
+
+- Install protoc
+```bash
 wget https://github.com/google/protobuf/releases/download/v3.2.0rc2/protoc-3.2.0rc2-linux-x86_64.zip
 unzip protoc-3.2.0rc2-linux-x86_64.zip
 sudo cp bin/protoc /usr/local/bin
@@ -38,8 +44,6 @@ sudo cp bin/protoc /usr/local/bin
     
       export GCP_SVCACCT_KEY= {path to your service account key file}
 
-# run server
-    go run server/server.go
-    
-# run client
-    go run client/client.go
+# Labs
+<a href="http://github.com/jonathankentstevens/grpc-tracing-lab/helloworld/README.md">Hello World</a><br>
+<a href="http://github.com/jonathankentstevens/grpc-tracing-lab/weather-search/README.md">Weather Search</a>

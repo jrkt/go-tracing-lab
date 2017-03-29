@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package proto;
+
+service Cache {
+    rpc Lookup (LookupRequest) returns (LookupResponse) {}
+}
+
+message LookupRequest {
+    int64 key = 1;
+}
+
+message LookupResponse {
+    bytes val = 1;
+}

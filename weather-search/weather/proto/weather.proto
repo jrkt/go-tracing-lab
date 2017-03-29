@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package proto;
+
+service Weather {
+    rpc GetCurrent (WeatherRequest) returns (WeatherResponse) {
+    }
+}
+
+message WeatherRequest {
+    string token = 1;
+    int64 zip = 2;
+}
+
+message WeatherResponse {
+    string location = 1;
+    string description = 2;
+    double temperature = 3;
+}

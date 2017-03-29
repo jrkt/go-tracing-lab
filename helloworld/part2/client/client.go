@@ -6,46 +6,53 @@ import (
 	"os"
 
 	"cloud.google.com/go/trace"
-	pb "github.com/jonathankentstevens/grpc-tracer/proto"
+	pb "github.com/jonathankentstevens/grpc-tracing-lab/helloworld/proto"
 	"golang.org/x/net/context"
-	"google.golang.org/api/option"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
 )
 
 var (
 	headerKey = "stackdriver-trace-context"
+	address   = "localhost:50051"
 )
 
 func main() {
 
-	// Set up a connection to the server.
-	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure(), EnableGRPCTracingDialOption)
-	//conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure(), grpc.WithUnaryInterceptor(trace.GRPCClientInterceptor()))
+	// establish connection with service w/ custom client interceptor
+	conn, err := grpc.Dial(address, grpc.WithInsecure(), EnableGRPCTracingDialOption)
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
+
+	// register new connection as a GreeterClient
 	c := pb.NewGreeterClient(conn)
 
+	// establish new trace client
 	ctx := context.Background()
-
-	tc, err := trace.NewClient(ctx, os.Getenv("GCP_PROJECT"), option.WithServiceAccountFile(os.Getenv("GCP_SVCACCT_KEY")))
+	tc, err := trace.NewClient(ctx, os.Getenv("GCP_PROJECT"))
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatalf("failed to establish new trace client: %v", err)
 	}
 
+	// create root span
 	span := tc.NewSpan("/greeter/SayHello")
+	span.SetLabel("from", "Erlich Bachman")
 
+	// build span into context
 	ctx = trace.NewContext(ctx, span)
-	r, err := c.SayHello(ctx, &pb.HelloRequest{Name: "world"})
+
+	// pass new context into gRPC call to service
+	r, err := c.SayHello(ctx, &pb.HelloRequest{Name: "Richard"})
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
 	}
 
-	err = span.FinishWait()
+	// blocks until traces have been uploaded to gcp
+	err = span.FinishWait() // use span.Finish() if your client is a long-running process.
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatalf("error finishing & uploading traces: %v", err)
 	}
 
 	println("Response:", r.Message)
@@ -55,6 +62,7 @@ func main() {
 var EnableGRPCTracingDialOption = grpc.WithUnaryInterceptor(grpc.UnaryClientInterceptor(clientInterceptor))
 
 func clientInterceptor(ctx context.Context, method string, req, reply interface{}, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
+
 	// trace current request w/ child span
 	span := trace.FromContext(ctx).NewChild(method)
 	defer span.Finish()

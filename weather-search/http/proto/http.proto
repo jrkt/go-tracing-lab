@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package proto;
+
+service HTTP {
+    rpc GET (GetRequest) returns (GetResponse) {
+    }
+}
+
+message GetRequest {
+    string url = 1;
+}
+
+message GetResponse {
+    bytes data = 1;
+}
