@@ -45,5 +45,5 @@ sudo cp bin/protoc /usr/local/bin
       export GCP_SVCACCT_KEY= {path to your service account key file}
 
 # Labs
-<a href="http://github.com/jonathankentstevens/grpc-tracing-lab/helloworld/README.md">Hello World</a><br>
-<a href="http://github.com/jonathankentstevens/grpc-tracing-lab/weather-search/README.md">Weather Search</a>
+<a href="https://github.com/jonathankentstevens/grpc-tracing-lab/blob/master/helloworld/README.md">Hello World</a><br>
+<a href="https://github.com/jonathankentstevens/grpc-tracing-lab/blob/master/weather-search/README.md">Weather Search</a>
