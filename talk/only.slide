@@ -1,0 +1,77 @@
+Distributed Tracing with Stackdriver
+6 June 2017
+
+Jonathan Stevens
+jonathanstevens89@gmail.com
+Head of System Architecture, CirclePix LLC
+
+* Agenda
+- pleasantries
+- quick review
+- build some stuff
+
+* Who are you?
+- Any golfers? - clint
+
+* Who is this guy & why is he presenting?
+- Programming addict
+- I want a tshirt
+.image chuck-approves.gif
+
+* From monolith to microservices
+
+* The Traditional Monolith
+.image monolith-1.png 500 950
+
+* Scaling
+.image monolith-scaling.jpg
+
+* Microservices. What are they?
+The term "Microservice Architecture" has sprung up over the last few years to describe a particular way of designing software applications as suites of independently deployable services. While there is no precise definition of this architectural style, there are certain common characteristics around organization around business capability, automated deployment, intelligence in the endpoints, and decentralized control of languages and data.
+
+_Martin_ _Fowler_
+
+* Microservices
+- They share schema, not class
+- Independent axes of scaling
+- Independent failure domains
+- Data-owning services for the major business objects and then sets of integration services that implement aggregations and logic over those objects.
+
+* Benefits?
+- Modularity
+- Independent Deployment
+- Technology Diversity
+.image languages.png 600 800
+
+* Problems?
+- Operational Complexity (Monitoring, Logging, etc.)
+- Distribution (Writing & Debugging)
+- Maintaining Consistency
+.image complexity.jpg 350 700
+
+* How to implement?
+- Package your services
+- Deploy them somewhere (AWS, GCP, bare metal)
+- Difficult with runtime dependencies
+.image docker.png 400 500
+
+* So, what in the world do we do??
+
+* Enter Go!
+.image gopher.png 400 300
+
+* gRPC
+gRPC is a modern high performance RPC framework that is taking people to church all over the world.
+
+- Idiomatic client libraries in 10 languages
+- Bi-directional streaming with http/2 based transport
+- Pluggable auth, tracing, load balancing and health checking
+.image gRPC-overview.svg 350 500
+
+* Ok, now let's build some shiz
+
+* References
+.link https://martinfowler.com/articles/microservices.html
+.link https://medium.com/@harlow/tracing-grpc-calls-in-golang-with-google-stackdriver-b22495763a06
+.link https://rakyll.org/grpc-trace
+.link https://github.com/ChimeraCoder/gojson
