@@ -17,6 +17,29 @@ var (
 	EnableGRPCTracingDialOption = grpc.WithUnaryInterceptor(grpc.UnaryClientInterceptor(clientInterceptor))
 )
 
+/*
+// establish connection with service w/ custom client interceptor
+conn, err := grpc.Dial(address, grpc.WithInsecure(), EnableGRPCTracingDialOption)
+...
+// initialize trace client
+ctx := context.Background()
+tc, err := trace.NewClient(ctx, os.Getenv("GCP_PROJECT"), option.WithServiceAccountFile(os.Getenv("GCP_KEY")))
+if err != nil {
+	log.Fatalf("failed to establish new trace client: %v", err)
+}
+
+// create root span
+span := tc.NewSpan("/greeter/SayHello")
+span.SetLabel("from", "Erlich Bachman")
+
+// build span into context that is passed in gRPC request
+ctx = trace.NewContext(ctx, span)
+...
+// make gRPC request
+...
+// blocks until traces have been uploaded to GCP
+err = span.FinishWait() // use span.Finish() if your client is a long-running process.
+*/
 func clientInterceptor(ctx context.Context, method string, req, reply interface{}, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
 
 	// trace current request w/ child span
@@ -40,6 +63,18 @@ func clientInterceptor(ctx context.Context, method string, req, reply interface{
 
 	return invoker(ctx, method, req, reply, cc, opts...)
 }
+
+/*
+// initialize trace client
+ctx := context.Background()
+tc, err := trace.NewClient(ctx, os.Getenv("GCP_PROJECT"), option.WithServiceAccountFile(os.Getenv("GCP_KEY")))
+if err != nil {
+	log.Fatalf("failed to establish trace client: %s", err)
+}
+
+// establish new gRPC server w/ custom server interceptor
+s := grpc.NewServer(EnableGRPCTracingServerOption(tc))
+*/
 
 // EnableGRPCTracingServerOption enables parsing google trace header from metadata
 // and adds a new child span to the incoming request context.

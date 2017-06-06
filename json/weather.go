@@ -1,4 +1,4 @@
-package weather
+package json
 
 type Conditions struct {
 	CurrentObservation struct {

@@ -8,22 +8,26 @@ Head of System Architecture, CirclePix LLC
 * Agenda
 - pleasantries
 - quick review
-- build some stuff
+- write some code
 
 * Who are you?
-- Any golfers? - clint
 
-* Who is this guy & why is he presenting?
+* Who am I and why am I presenting?
 - Programming addict
 - I want a tshirt
 .image chuck-approves.gif
+
+* Who am I and why am I presenting?
+- Head of System Architecture at CirclePix
+.link https://www.circlepix.com
+.image circlepix.png 75 350
 
 * From monolith to microservices
 
 * The Traditional Monolith
 .image monolith-1.png 500 950
 
-* Scaling
+* The Traditional Monolith - Scaling
 .image monolith-scaling.jpg
 
 * Microservices. What are they?
@@ -33,15 +37,15 @@ _Martin_ _Fowler_
 
 * Microservices
 - They share schema, not class
-- Independent axes of scaling
+- Independent axes of scaling/deploying
 - Independent failure domains
 - Data-owning services for the major business objects and then sets of integration services that implement aggregations and logic over those objects.
+- Technological diversity
+.image languages.png 400 600
 
-* Benefits?
-- Modularity
-- Independent Deployment
-- Technology Diversity
-.image languages.png 600 800
+* This is not a new idea
+*Unix* *philosophy*
+- Make each program do one thing well. To do a new job, build afresh rather than complicate old programs by adding new "features". (1978)
 
 * Problems?
 - Operational Complexity (Monitoring, Logging, etc.)
@@ -55,10 +59,18 @@ _Martin_ _Fowler_
 - Difficult with runtime dependencies
 .image docker.png 400 500
 
-* So, what in the world do we do??
-
-* Enter Go!
+* So why is Go a good choice for a microservice architecture?
 .image gopher.png 400 300
+
+* How to communicate between services?
+
+* REST (Representational State Transfer)
+An architectural style says that web application should use HTTP as it was originally designed.
+
+- GET: lookups & retrieving data
+- POST: create resource
+- PUT: update resource
+- DELETE: delete resource
 
 * gRPC
 gRPC is a modern high performance RPC framework that is taking people to church all over the world.
@@ -68,10 +80,37 @@ gRPC is a modern high performance RPC framework that is taking people to church 
 - Pluggable auth, tracing, load balancing and health checking
 .image gRPC-overview.svg 350 500
 
-* Ok, now let's build some shiz
+* JSON
+.link https://github.com/ChimeraCoder/gojson
+
+* What is Stackdriver?
+
+* Google Stackdriver
+.image stackdriver.png 550 650
+
+* Monitoring
+.link https://cloud.google.com/monitoring
+
+* Logging
+.link https://cloud.google.com/logging
+
+* Error Reporting
+.link https://cloud.google.com/error-reporting
+
+* Debugger
+.link https://cloud.google.com/debugger
+
+* Trace
+.link https://cloud.google.com/trace/
+.link https://github.com/GoogleCloudPlatform/google-cloud-go/blob/master/trace/trace.go#L17
+
+* Ok, now let's build some shiz!
+.image jared_excited.gif
+.image yessss.gif
 
 * References
 .link https://martinfowler.com/articles/microservices.html
 .link https://medium.com/@harlow/tracing-grpc-calls-in-golang-with-google-stackdriver-b22495763a06
 .link https://rakyll.org/grpc-trace
 .link https://github.com/ChimeraCoder/gojson
+.link http://emulator.pdp-11.org.ru/misc/1978.07_-_Bell_System_Technical_Journal.pdf

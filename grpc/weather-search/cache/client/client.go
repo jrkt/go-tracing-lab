@@ -4,7 +4,7 @@ import (
 	"time"
 
 	pb "github.com/jonathankentstevens/go-tracing-lab/grpc/weather-search/cache/proto"
-	"github.com/jonathankentstevens/go-tracing-lab/grpc/weather-search/interceptors"
+	"github.com/jonathankentstevens/go-tracing-lab/grpc/interceptors"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )

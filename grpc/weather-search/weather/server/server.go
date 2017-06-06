@@ -10,12 +10,12 @@ import (
 	"time"
 
 	"cloud.google.com/go/trace"
+	"github.com/jonathankentstevens/go-tracing-lab/grpc/interceptors"
 	auth "github.com/jonathankentstevens/go-tracing-lab/grpc/weather-search/auth/client"
 	cache "github.com/jonathankentstevens/go-tracing-lab/grpc/weather-search/cache/client"
 	http "github.com/jonathankentstevens/go-tracing-lab/grpc/weather-search/http/client"
-	"github.com/jonathankentstevens/go-tracing-lab/grpc/weather-search/interceptors"
-	"github.com/jonathankentstevens/go-tracing-lab/grpc/weather-search/weather"
 	pb "github.com/jonathankentstevens/go-tracing-lab/grpc/weather-search/weather/proto"
+	"github.com/jonathankentstevens/go-tracing-lab/json"
 	"golang.org/x/net/context"
 	"google.golang.org/api/option"
 	"google.golang.org/grpc"
@@ -60,7 +60,7 @@ func (s *server) GetCurrent(ctx context.Context, in *pb.WeatherRequest) (*pb.Wea
 	}
 
 	requestUrl := fmt.Sprintf("http://api.wunderground.com/api/%s/conditions/q/UT/%d.json", in.Token, in.Zip)
-	var conditions weather.Conditions
+	var conditions json.Conditions
 	err = httpClient.GET(ctx, requestUrl, &conditions)
 	if err != nil {
 		return nil, errors.New("http request failed: " + err.Error())

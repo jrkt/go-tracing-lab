@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"cloud.google.com/go/trace"
+	"github.com/jonathankentstevens/go-tracing-lab/grpc/interceptors"
 	pb "github.com/jonathankentstevens/go-tracing-lab/grpc/weather-search/auth/proto"
-	"github.com/jonathankentstevens/go-tracing-lab/grpc/weather-search/interceptors"
 	"golang.org/x/net/context"
 	"google.golang.org/api/option"
 	"google.golang.org/grpc"
