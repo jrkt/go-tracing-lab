@@ -1,15 +1,15 @@
 # Tracing requests with Google Stackdriver
 https://github.com/GoogleCloudPlatform/google-cloud-go/blob/master/trace/trace.go
 
-This is an example repo for getting Google's Stackdriver Tracer tracing requests across microservices.
+This is an example repo for getting Google's Stackdriver Trace tracing requests across microservices.
 
 # Create new GCP project
 
 <a href="https://console.cloud.google.com">Google Cloud Console</a>
 
-# Enable billing & add to project
+# Enable billing
 
-Do some stuff here...
+Go to <a href="https://console.cloud.google.com/billing/">Billing</a> to set up a billing account & make sure it is enabled for the new project you created.
 
 # Enable Stackdriver Trace API
 
@@ -20,24 +20,37 @@ Do some stuff here...
 - select "Stackdriver Trace API"
 - click "Enable"
 
+# Create service account
+
+Go to <a href="https://console.cloud.google.com/iam-admin/serviceaccounts">Service Accounts</a>
+
+- click "Create service account"
+- name it "tracer"
+- select the Role of "Cloud Trace Agent"
+- select "Furnish a new private key"
+- click "CREATE"
+
+The JSON key will be downloaded.
+
+# set environment vars
+      export GCP_PROJECT={project id of the new project you created}
+    
+      export GCP_KEY={full path of the service account key file that you just downloaded}
+      
 # Get repo
 ```
 git clone http://github.com/jonathankentstevens/go-tracing-lab $GOPATH/src/github.com/jonathankentstevens/go-tracing-lab
 ```
 
-# set environment vars
-      export GCP_PROJECT={gcp project id}
-    
-      export GCP_KEY={path to your service account key file}
-
 # HTTP REST Labs
-<a href="https://github.com/jonathankentstevens/go-tracing-lab/rest/blob/master/helloworld/README.md">Hello World</a><br>
-<a href="https://github.com/jonathankentstevens/go-tracing-lab/rest/blob/master/weather-search/README.md">Weather Search</a>
+<a href="https://github.com/jonathankentstevens/go-tracing-lab/tree/master/rest/helloworld">Hello World</a><br>
+<a href="https://github.com/jonathankentstevens/go-tracing-lab/tree/master/rest/convo">Silicon Valley Conversation</a>
 
-# gRPC Lab
-<a href="https://github.com/jonathankentstevens/go-tracing-lab/grpc/blob/master/weather-search/README.md">Weather Search</a>
+# gRPC Labs
+<a href="https://github.com/jonathankentstevens/go-tracing-lab/tree/master/grpc/helloworld">Hello World</a><br>
+<a href="https://github.com/jonathankentstevens/go-tracing-lab/tree/master/grpc/weather-search">Weather Search</a>
 
-# Reference: Setting up gRPC
+# Reference: Setting up gRPC (linux)
 
 - Get code
 ```

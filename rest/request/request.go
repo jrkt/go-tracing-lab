@@ -1,27 +1,12 @@
 package request
 
 import (
-	"context"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
-	"os"
 
 	"cloud.google.com/go/trace"
-	"google.golang.org/api/option"
 )
-
-var traceClient *trace.Client
-
-func init() {
-	// create trace client from service account key file
-	var err error
-	traceClient, err = trace.NewClient(context.Background(), os.Getenv("GCP_PROJECT"), option.WithServiceAccountFile(os.Getenv("GCP_KEY")))
-	if err != nil {
-		log.Fatalf("Error creating trace client: %s", err)
-	}
-}
 
 func GET(url string, span *trace.Span) ([]byte, error) {
 	return req("GET", url, span)
