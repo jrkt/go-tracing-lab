@@ -25,8 +25,8 @@ type Conditions struct {
 		FeelslikeF      string   `json:"feelslike_f"`
 		FeelslikeString string   `json:"feelslike_string"`
 		ForecastURL     string   `json:"forecast_url"`
-		HeatIndexC      string   `json:"heat_index_c"`
-		HeatIndexF      string   `json:"heat_index_f"`
+		HeatIndexC      int64    `json:"heat_index_c"`
+		HeatIndexF      int64    `json:"heat_index_f"`
 		HeatIndexString string   `json:"heat_index_string"`
 		HistoryURL      string   `json:"history_url"`
 		Icon            string   `json:"icon"`
@@ -92,4 +92,5 @@ type Conditions struct {
 		TermsofService string `json:"termsofService"`
 		Version        string `json:"version"`
 	} `json:"response"`
+	URL string `json:"url"`
 }

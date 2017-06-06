@@ -6,18 +6,16 @@ import (
 	"log"
 	"math/rand"
 	"net"
-	"os"
 	"time"
 
-	"cloud.google.com/go/trace"
 	"github.com/jonathankentstevens/go-tracing-lab/grpc/interceptors"
 	auth "github.com/jonathankentstevens/go-tracing-lab/grpc/weather-search/auth/client"
 	cache "github.com/jonathankentstevens/go-tracing-lab/grpc/weather-search/cache/client"
 	http "github.com/jonathankentstevens/go-tracing-lab/grpc/weather-search/http/client"
 	pb "github.com/jonathankentstevens/go-tracing-lab/grpc/weather-search/weather/proto"
 	"github.com/jonathankentstevens/go-tracing-lab/json"
+	"github.com/jonathankentstevens/go-tracing-lab/traceclient"
 	"golang.org/x/net/context"
-	"google.golang.org/api/option"
 	"google.golang.org/grpc"
 )
 
@@ -82,10 +80,9 @@ func main() {
 	}
 
 	// establish trace client
-	ctx := context.Background()
-	tc, err := trace.NewClient(ctx, os.Getenv("GCP_PROJECT"), option.WithServiceAccountFile(os.Getenv("GCP_KEY")))
+	tc, err := traceclient.New()
 	if err != nil {
-		log.Fatalf("failed to establish trace client: %v", err)
+		log.Fatalln(err)
 	}
 
 	// establish new gRPC server w/ custom server interceptor

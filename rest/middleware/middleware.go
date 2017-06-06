@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
@@ -13,8 +14,10 @@ func TraceRequest(tc *trace.Client, fn traceHandlerFunc) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("Access-Control-Allow-Origin", "*")
 
+		fmt.Println("received request:", r.RequestURI)
+
 		span := tc.SpanFromRequest(r)
-		defer span.FinishWait()
+		defer span.Finish()
 
 		time.Sleep(5 * time.Millisecond)
 

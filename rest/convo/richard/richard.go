@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -11,15 +10,14 @@ import (
 	"github.com/jonathankentstevens/go-tracing-lab/rest/convo/ports"
 	"github.com/jonathankentstevens/go-tracing-lab/rest/middleware"
 	"github.com/jonathankentstevens/go-tracing-lab/rest/request"
-	"golang.org/x/net/context"
-	"google.golang.org/api/option"
+	"github.com/jonathankentstevens/go-tracing-lab/traceclient"
 )
 
 func main() {
 
-	traceClient, err := trace.NewClient(context.Background(), os.Getenv("GCP_PROJECT"), option.WithServiceAccountFile(os.Getenv("GCP_KEY")))
+	traceClient, err := traceclient.New()
 	if err != nil {
-		log.Fatalf("Error creating trace client: %s", err)
+		log.Fatalln(err)
 	}
 
 	http.HandleFunc("/startconvo", middleware.TraceRequest(traceClient, startconvo))
@@ -34,16 +32,13 @@ func main() {
 }
 
 func startconvo(span *trace.Span, w http.ResponseWriter, r *http.Request) {
-	fmt.Println("received request: /startconvo")
-
 	span.SetLabel("audio", "did you delete it?")
 
-	err := exec.Command("cvlc", "--play-and-exit", "/home/jstevens/Presentation/richard-1.mp3").Run()
+	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jonathankentstevens/go-tracing-lab/audio/richard-1.mp3").Run()
 	if err != nil {
 		log.Fatalln("failed to play audio:", err)
 	}
 
-	fmt.Println("making request: /gilfoyle-1")
 	_, err = request.POST("http://localhost:"+ports.Gilfoyle+"/gilfoyle-1", span)
 	if err != nil {
 		log.Fatalln(err)
@@ -51,11 +46,9 @@ func startconvo(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 }
 
 func richard2(span *trace.Span, w http.ResponseWriter, r *http.Request) {
-	fmt.Println("received request: /richard-2")
-
 	span.SetLabel("audio", "oops, what does that mean, oops?")
 
-	err := exec.Command("cvlc", "--play-and-exit", "/home/jstevens/Presentation/richard-2.mp3").Run()
+	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jonathankentstevens/go-tracing-lab/audio/richard-2.mp3").Run()
 	if err != nil {
 		log.Fatalln("failed to play audio:", err)
 	}
@@ -67,11 +60,9 @@ func richard2(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 }
 
 func richard3(span *trace.Span, w http.ResponseWriter, r *http.Request) {
-	fmt.Println("received request: /richard-3")
-
 	span.SetLabel("audio", "what?")
 
-	err := exec.Command("cvlc", "--play-and-exit", "/home/jstevens/Presentation/richard-3.mp3").Run()
+	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jonathankentstevens/go-tracing-lab/audio/richard-3.mp3").Run()
 	if err != nil {
 		log.Fatalln("failed to play audio:", err)
 	}
@@ -83,11 +74,9 @@ func richard3(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 }
 
 func richard4(span *trace.Span, w http.ResponseWriter, r *http.Request) {
-	fmt.Println("received request: /richard-4")
-
 	span.SetLabel("audio", "so what does that mean? did you delete Pied Piper or not?")
 
-	err := exec.Command("cvlc", "--play-and-exit", "/home/jstevens/Presentation/richard-4.mp3").Run()
+	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jonathankentstevens/go-tracing-lab/audio/richard-4.mp3").Run()
 	if err != nil {
 		log.Fatalln("failed to play audio:", err)
 	}

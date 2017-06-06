@@ -3,6 +3,7 @@ Distributed Tracing with Stackdriver
 
 Jonathan Stevens
 jonathanstevens89@gmail.com
+https://github.com/jonathankentstevens
 Head of System Architecture, CirclePix LLC
 
 * Agenda
@@ -43,17 +44,18 @@ _Martin_ _Fowler_
 - Technological diversity
 .image languages.png 400 600
 
-* This is not a new idea
-*Unix* *philosophy*
-- Make each program do one thing well. To do a new job, build afresh rather than complicate old programs by adding new "features". (1978)
+* This is not a new idea - Unix Philosophy
+- Minimalist ideals, modularity and reusable components
+- The Unix philosophy emphasizes building simple, short, clear, modular, and extensible code that can be easily maintained and repurposed by developers other than its creators. The Unix philosophy favors composability as opposed to monolithic design.
+- Write programs that do one thing and do it well. Write programs to work together. (1978)
 
-* Problems?
+* Microservices - Problems?
 - Operational Complexity (Monitoring, Logging, etc.)
 - Distribution (Writing & Debugging)
 - Maintaining Consistency
 .image complexity.jpg 350 700
 
-* How to implement?
+* Microservices - How to implement?
 - Package your services
 - Deploy them somewhere (AWS, GCP, bare metal)
 - Difficult with runtime dependencies
@@ -71,6 +73,8 @@ An architectural style says that web application should use HTTP as it was origi
 - POST: create resource
 - PUT: update resource
 - DELETE: delete resource
+
+.link http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api
 
 * gRPC
 gRPC is a modern high performance RPC framework that is taking people to church all over the world.
@@ -106,7 +110,7 @@ gRPC is a modern high performance RPC framework that is taking people to church 
 
 * Ok, now let's build some shiz!
 .image jared_excited.gif
-.image yessss.gif
+.image happy.gif _ 200
 
 * References
 .link https://martinfowler.com/articles/microservices.html
@@ -114,3 +118,4 @@ gRPC is a modern high performance RPC framework that is taking people to church 
 .link https://rakyll.org/grpc-trace
 .link https://github.com/ChimeraCoder/gojson
 .link http://emulator.pdp-11.org.ru/misc/1978.07_-_Bell_System_Technical_Journal.pdf
+.link https://en.wikipedia.org/wiki/Unix_philosophy
