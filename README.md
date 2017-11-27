@@ -39,16 +39,16 @@ The JSON key will be downloaded.
       
 # Get repo
 ```
-git clone http://github.com/jonathankentstevens/go-tracing-lab $GOPATH/src/github.com/jonathankentstevens/go-tracing-lab
+git clone http://github.com/jrkt/go-tracing-lab $GOPATH/src/github.com/jrkt/go-tracing-lab
 ```
 
 # HTTP REST Labs
-<a href="https://github.com/jonathankentstevens/go-tracing-lab/tree/master/rest/helloworld">Hello World</a><br>
-<a href="https://github.com/jonathankentstevens/go-tracing-lab/tree/master/rest/convo">Silicon Valley Conversation</a>
+<a href="https://github.com/jrkt/go-tracing-lab/tree/master/rest/helloworld">Hello World</a><br>
+<a href="https://github.com/jrkt/go-tracing-lab/tree/master/rest/convo">Silicon Valley Conversation</a>
 
 # gRPC Labs
-<a href="https://github.com/jonathankentstevens/go-tracing-lab/tree/master/grpc/helloworld">Hello World</a><br>
-<a href="https://github.com/jonathankentstevens/go-tracing-lab/tree/master/grpc/weather-search">Weather Search</a>
+<a href="https://github.com/jrkt/go-tracing-lab/tree/master/grpc/helloworld">Hello World</a><br>
+<a href="https://github.com/jrkt/go-tracing-lab/tree/master/grpc/weather-search">Weather Search</a>
 
 # Reference: Setting up gRPC (linux)
 

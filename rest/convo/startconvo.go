@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 
-	"github.com/jonathankentstevens/go-tracing-lab/rest/convo/ports"
-	"github.com/jonathankentstevens/go-tracing-lab/rest/request"
+	"github.com/jrkt/go-tracing-lab/rest/convo/ports"
+	"github.com/jrkt/go-tracing-lab/rest/request"
 )
 
 func main() {

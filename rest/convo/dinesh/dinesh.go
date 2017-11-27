@@ -7,10 +7,10 @@ import (
 	"os/exec"
 
 	"cloud.google.com/go/trace"
-	"github.com/jonathankentstevens/go-tracing-lab/rest/convo/ports"
-	"github.com/jonathankentstevens/go-tracing-lab/rest/middleware"
-	"github.com/jonathankentstevens/go-tracing-lab/rest/request"
-	"github.com/jonathankentstevens/go-tracing-lab/traceclient"
+	"github.com/jrkt/go-tracing-lab/rest/convo/ports"
+	"github.com/jrkt/go-tracing-lab/rest/middleware"
+	"github.com/jrkt/go-tracing-lab/rest/request"
+	"github.com/jrkt/go-tracing-lab/traceclient"
 )
 
 func main() {
@@ -31,7 +31,7 @@ func main() {
 func dinesh1(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 	span.SetLabel("audio", "you said delete..")
 
-	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jonathankentstevens/go-tracing-lab/audio/dinesh-1.mp3").Run()
+	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jrkt/go-tracing-lab/audio/dinesh-1.mp3").Run()
 	if err != nil {
 		log.Fatalln("failed to play audio:", err)
 	}

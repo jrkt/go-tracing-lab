@@ -3,8 +3,8 @@ package client
 import (
 	"time"
 
-	pb "github.com/jonathankentstevens/go-tracing-lab/grpc/weather-search/cache/proto"
-	"github.com/jonathankentstevens/go-tracing-lab/grpc/interceptors"
+	pb "github.com/jrkt/go-tracing-lab/grpc/weather-search/cache/proto"
+	"github.com/jrkt/go-tracing-lab/grpc/interceptors"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )

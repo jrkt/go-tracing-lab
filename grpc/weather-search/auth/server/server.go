@@ -6,9 +6,9 @@ import (
 	"net"
 	"time"
 
-	"github.com/jonathankentstevens/go-tracing-lab/grpc/interceptors"
-	pb "github.com/jonathankentstevens/go-tracing-lab/grpc/weather-search/auth/proto"
-	"github.com/jonathankentstevens/go-tracing-lab/traceclient"
+	"github.com/jrkt/go-tracing-lab/grpc/interceptors"
+	pb "github.com/jrkt/go-tracing-lab/grpc/weather-search/auth/proto"
+	"github.com/jrkt/go-tracing-lab/traceclient"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )

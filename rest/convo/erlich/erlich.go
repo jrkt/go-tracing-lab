@@ -7,10 +7,10 @@ import (
 	"os/exec"
 
 	"cloud.google.com/go/trace"
-	"github.com/jonathankentstevens/go-tracing-lab/rest/convo/ports"
-	"github.com/jonathankentstevens/go-tracing-lab/rest/middleware"
-	"github.com/jonathankentstevens/go-tracing-lab/rest/request"
-	"github.com/jonathankentstevens/go-tracing-lab/traceclient"
+	"github.com/jrkt/go-tracing-lab/rest/convo/ports"
+	"github.com/jrkt/go-tracing-lab/rest/middleware"
+	"github.com/jrkt/go-tracing-lab/rest/request"
+	"github.com/jrkt/go-tracing-lab/traceclient"
 )
 
 func main() {
@@ -34,7 +34,7 @@ func main() {
 func erlich1(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 	span.SetLabel("audio", "gilfoyle, whats happening? what?")
 
-	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jonathankentstevens/go-tracing-lab/audio/erlich-1.mp3").Run()
+	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jrkt/go-tracing-lab/audio/erlich-1.mp3").Run()
 	if err != nil {
 		log.Fatalln("failed to play audio:", err)
 	}
@@ -48,7 +48,7 @@ func erlich1(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 func erlich2(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 	span.SetLabel("audio", "go for Erlich..")
 
-	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jonathankentstevens/go-tracing-lab/audio/erlich-2.mp3").Run()
+	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jrkt/go-tracing-lab/audio/erlich-2.mp3").Run()
 	if err != nil {
 		log.Fatalln("failed to play audio:", err)
 	}
@@ -62,12 +62,12 @@ func erlich2(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 func erlich3(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 	span.SetLabel("audio", "I'm gonna let him have this one..")
 
-	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jonathankentstevens/go-tracing-lab/audio/erlich-3.mp3").Run()
+	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jrkt/go-tracing-lab/audio/erlich-3.mp3").Run()
 	if err != nil {
 		log.Fatalln("failed to play audio:", err)
 	}
 
-	err = exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jonathankentstevens/go-tracing-lab/audio/erlich-4.mp3").Run()
+	err = exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jrkt/go-tracing-lab/audio/erlich-4.mp3").Run()
 	if err != nil {
 		log.Fatalln("failed to play audio:", err)
 	}
@@ -82,7 +82,7 @@ func erlich4(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 
 	span.SetLabel("audio", "Not now JianYang! Go back into your room!")
 
-	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jonathankentstevens/go-tracing-lab/audio/erlich-5.mp3").Run()
+	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jrkt/go-tracing-lab/audio/erlich-5.mp3").Run()
 	if err != nil {
 		log.Fatalln("failed to play audio:", err)
 	}

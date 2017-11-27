@@ -7,10 +7,10 @@ import (
 	"os/exec"
 
 	"cloud.google.com/go/trace"
-	"github.com/jonathankentstevens/go-tracing-lab/rest/convo/ports"
-	"github.com/jonathankentstevens/go-tracing-lab/rest/middleware"
-	"github.com/jonathankentstevens/go-tracing-lab/rest/request"
-	"github.com/jonathankentstevens/go-tracing-lab/traceclient"
+	"github.com/jrkt/go-tracing-lab/rest/convo/ports"
+	"github.com/jrkt/go-tracing-lab/rest/middleware"
+	"github.com/jrkt/go-tracing-lab/rest/request"
+	"github.com/jrkt/go-tracing-lab/traceclient"
 )
 
 func main() {
@@ -34,7 +34,7 @@ func main() {
 func gilfoyle1(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 	span.SetLabel("audio", "oops")
 
-	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jonathankentstevens/go-tracing-lab/audio/gilfoyle-1.mp3").Run()
+	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jrkt/go-tracing-lab/audio/gilfoyle-1.mp3").Run()
 	if err != nil {
 		log.Fatalln("failed to play audio:", err)
 	}
@@ -48,7 +48,7 @@ func gilfoyle1(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 func gilfoyle2(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 	span.SetLabel("audio", "oh wait, hold on..")
 
-	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jonathankentstevens/go-tracing-lab/audio/gilfoyle-2.mp3").Run()
+	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jrkt/go-tracing-lab/audio/gilfoyle-2.mp3").Run()
 	if err != nil {
 		log.Fatalln("failed to play audio:", err)
 	}
@@ -62,7 +62,7 @@ func gilfoyle2(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 func gilfoyle3(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 	span.SetLabel("audio", "thats weird, kernel panic, the whole system just shut down")
 
-	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jonathankentstevens/go-tracing-lab/audio/gilfoyle-3.mp3").Run()
+	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jrkt/go-tracing-lab/audio/gilfoyle-3.mp3").Run()
 	if err != nil {
 		log.Fatalln("failed to play audio:", err)
 	}
@@ -76,7 +76,7 @@ func gilfoyle3(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 func gilfoyle4(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 	span.SetLabel("audio", "nope, we definitely did not. thanks to Dinesh's garbage code...")
 
-	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jonathankentstevens/go-tracing-lab/audio/gilfoyle-4.mp3").Run()
+	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jrkt/go-tracing-lab/audio/gilfoyle-4.mp3").Run()
 	if err != nil {
 		log.Fatalln("failed to play audio:", err)
 	}

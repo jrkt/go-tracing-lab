@@ -4,7 +4,7 @@ import (
 	"flag"
 	"log"
 
-	"github.com/jonathankentstevens/go-tracing-lab/rest/request"
+	"github.com/jrkt/go-tracing-lab/rest/request"
 )
 
 func main() {

@@ -7,10 +7,10 @@ import (
 	"os/exec"
 
 	"cloud.google.com/go/trace"
-	"github.com/jonathankentstevens/go-tracing-lab/rest/convo/ports"
-	"github.com/jonathankentstevens/go-tracing-lab/rest/middleware"
-	"github.com/jonathankentstevens/go-tracing-lab/rest/request"
-	"github.com/jonathankentstevens/go-tracing-lab/traceclient"
+	"github.com/jrkt/go-tracing-lab/rest/convo/ports"
+	"github.com/jrkt/go-tracing-lab/rest/middleware"
+	"github.com/jrkt/go-tracing-lab/rest/request"
+	"github.com/jrkt/go-tracing-lab/traceclient"
 )
 
 func main() {
@@ -32,7 +32,7 @@ func main() {
 func jianyang1(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 	span.SetLabel("audio", "Eric a Bachmann.. this is you, as a old man...")
 
-	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jonathankentstevens/go-tracing-lab/audio/jianyang-1.mp3").Run()
+	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jrkt/go-tracing-lab/audio/jianyang-1.mp3").Run()
 	if err != nil {
 		log.Fatalln("failed to play audio:", err)
 	}
@@ -46,7 +46,7 @@ func jianyang1(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 func jianyang2(span *trace.Span, w http.ResponseWriter, r *http.Request) {
 	span.SetLabel("audio", "Eric Bachmann..this is your mom..")
 
-	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jonathankentstevens/go-tracing-lab/audio/jianyang-2.mp3").Run()
+	err := exec.Command("cvlc", "--play-and-exit", os.Getenv("GOPATH")+"/src/github.com/jrkt/go-tracing-lab/audio/jianyang-2.mp3").Run()
 	if err != nil {
 		log.Fatalln("failed to play audio:", err)
 	}

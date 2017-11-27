@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"cloud.google.com/go/trace"
-	"github.com/jonathankentstevens/go-tracing-lab/rest/middleware"
-	"github.com/jonathankentstevens/go-tracing-lab/traceclient"
+	"github.com/jrkt/go-tracing-lab/rest/middleware"
+	"github.com/jrkt/go-tracing-lab/traceclient"
 )
 
 func main() {
